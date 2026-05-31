@@ -1,2 +1,2 @@
-# MTG_Management
+# MTG Management
 
