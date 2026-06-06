@@ -13,7 +13,6 @@ This repository is the workflow engine for my MTG deck management system. It con
 MTG_Management/
 
 ├── README.md                          # This file — authoritative source for structure
-
 ├── decks/
 │   └── deck-name/
 │       ├── overview.md                # Commander, theme, Bracket rating
@@ -87,7 +86,7 @@ Use these as a loading guide — which files to feed an AI assistant for each ta
 
 ```
 Load: protocols/master-deckbuilding-logic.md
-      protocols/bracket3-constraints.md
+      protocols/bracket-constraints.md
       protocols/input-contract.md
       prompts/web-guide-synthesis.md
       decks/[deck-name]/overview.md
@@ -99,7 +98,7 @@ Load: protocols/master-deckbuilding-logic.md
 
 ```
 Load: protocols/master-deckbuilding-logic.md
-      protocols/bracket3-constraints.md
+      protocols/bracket-constraints.md
       prompts/comparison-logic.md
       decks/[deck-name]/decklist.md
       decks/[deck-name]/changelog.md
@@ -108,7 +107,7 @@ Load: protocols/master-deckbuilding-logic.md
 
 ```
 Load: protocols/master-deckbuilding-logic.md
-      protocols/bracket3-constraints.md
+      protocols/bracket-constraints.md
       protocols/input-contract.md
       prompts/deck-review-prompt.md
       decks/[deck-name]/overview.md
@@ -119,6 +118,6 @@ Load: protocols/master-deckbuilding-logic.md
 ---
 ## Notes
 
-- **Moxfield CSV:** Do not rename the export file on ingest. Leave it as produced by Moxfield so the import script does not break. Document any anomalies in `inventory/inventory-notes.md`.
+- **Moxfield CSV:** Retain the native Moxfield export filename (`moxfield_haves_[YYYY-MM-DD-HHmmZ].csv`). Do not rename on ingest. When multiple exports exist in `inventory/`, the most recent datestamp is the active file. Document any anomalies in `inventory/inventory-notes.md`.
 - **Authoritative Structure:** This README is the authoritative source for repo structure. If any other document references a folder or file layout, this document takes precedence.
 - **Naming Convention:** All files and folders use hyphens, not underscores. Exception: `moxfield-export.csv` uses whatever filename Moxfield produces.
