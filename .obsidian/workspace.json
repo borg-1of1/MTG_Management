@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "protocols/bracket-constraints.md.md",
+                "file": "protocols/bracket-constraints.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "bracket-constraints.md"
+              "title": "bracket-constraints"
             }
           },
           {
@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "protocols/input-contract.md.md",
+                "file": "protocols/master-deckbuilding-logic.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "input-contract.md"
+              "title": "master-deckbuilding-logic"
             }
           }
         ],
@@ -109,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "protocols/input-contract.md.md",
+                "file": "protocols/master-deckbuilding-logic.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -119,7 +119,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for input-contract.md"
+              "title": "Backlinks for master-deckbuilding-logic"
             }
           },
           {
@@ -128,12 +128,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "protocols/input-contract.md.md",
+                "file": "protocols/master-deckbuilding-logic.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from input-contract.md"
+              "title": "Outgoing links from master-deckbuilding-logic"
             }
           },
           {
@@ -171,13 +171,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "protocols/input-contract.md.md",
+                "file": "protocols/master-deckbuilding-logic.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of input-contract.md"
+              "title": "Outline of master-deckbuilding-logic"
             }
           }
         ]
@@ -200,9 +200,13 @@
   },
   "active": "98bced49b643cef0",
   "lastOpenFiles": [
-    "README.md",
-    "protocols/input-contract.md.md",
-    "protocols/bracket-constraints.md.md",
-    "protocols/master_deckbuilding_logic.md"
+    "prompts/deck-review-prompt.md",
+    "prompts/comparison-logic.md",
+    "protocols/web-guide-synthesis.md",
+    "protocols/input-contract.md",
+    "protocols/master-deckbuilding-logic.md",
+    "protocols/MTG Deck Management.md",
+    "protocols/bracket-constraints.md",
+    "README.md"
   ]
 }
