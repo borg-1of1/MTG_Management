@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "templates/Changelog.md",
+                "file": "templates/changelog.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Changelog"
+              "title": "changelog"
             }
           },
           {
@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "templates/Upgrade-candidates.md",
+                "file": "templates/upgrade-candidates.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Upgrade-candidates"
+              "title": "upgrade-candidates"
             }
           },
           {
@@ -83,12 +83,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "decks/mutant-menace/Mutant Menace.md",
+                "file": "decks/mutant-menace/overview.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Mutant Menace"
+              "title": "overview"
             }
           }
         ],
@@ -165,7 +165,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "decks/mutant-menace/Mutant Menace.md",
+                "file": "decks/mutant-menace/overview.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -175,7 +175,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Mutant Menace"
+              "title": "Backlinks for overview"
             }
           },
           {
@@ -184,12 +184,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "decks/mutant-menace/Mutant Menace.md",
+                "file": "decks/mutant-menace/overview.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Mutant Menace"
+              "title": "Outgoing links from overview"
             }
           },
           {
@@ -227,13 +227,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "decks/mutant-menace/Mutant Menace.md",
+                "file": "decks/mutant-menace/overview.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Mutant Menace"
+              "title": "Outline of overview"
             }
           }
         ]
@@ -254,25 +254,25 @@
       "bases:Create new base": false
     }
   },
-  "active": "6e30d36489d22e87",
+  "active": "7acbe90f0e71a240",
   "lastOpenFiles": [
+    "docs/MTG-Deck-Management.md",
+    "templates/upgrade-candidates.md",
+    "templates/changelog.md",
+    "decks/mutant-menace/overview.md",
     "README.md",
-    "decks/mutant-menace/Mutant Menace.md",
     "decks/mutant-menace",
     "decks/the-wise-mothman",
     "decks/New folder",
     "decks",
     "New folder",
     "templates/session-handoff.md",
-    "templates/Upgrade-candidates.md",
-    "templates/Changelog.md",
-    "docs/MTG-Deck-Management.md",
     "docs",
     "protocols/MTG-Deck-Management.md",
     "protocols/master-deckbuilding-logic.md",
     "prompts/deck-review-prompt.md",
     "prompts/comparison-logic.md",
-    "protocols/web-guide-synthesis.md",
+    "prompts/web-guide-synthesis.md",
     "protocols/input-contract.md",
     "protocols/bracket-constraints.md"
   ]
