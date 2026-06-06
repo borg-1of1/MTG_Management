@@ -32,3 +32,13 @@ MTG_Management/
 └── scripts/
     └── inventory-check.py      # CSV cross-reference automation
 
+# Protocols & Prompts
+A quick note about the protocols and prompts.
+These are separated as they are distinct functions to the AI.  One is a core set of "rules" while the other assists with running a particular job.  
+
+This distinction is also a reminder to me of what I was thinking when I was working on when I crafted the protocol or prompt.  Was I setting up rules to follow or looking for a task to be done?  
+## Protocols
+These are rules that are "always on" and are something the AI assistant is expected to honor throughout the task.  
+
+## Prompts
+These represent task-specific triggers and are used when doing a specific or particular job. 
