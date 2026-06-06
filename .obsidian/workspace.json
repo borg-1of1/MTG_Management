@@ -36,20 +36,6 @@
             }
           },
           {
-            "id": "8a062c0fbd13d804",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "templates/changelog.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "changelog"
-            }
-          },
-          {
             "id": "2e716a52f9057cec",
             "type": "leaf",
             "state": {
@@ -64,35 +50,21 @@
             }
           },
           {
-            "id": "526ae707a6bd856c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "README.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "README"
-            }
-          },
-          {
             "id": "7acbe90f0e71a240",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "decks/mutant-menace/mutant-menace-overview.md",
+                "file": "protocols/master-deckbuilding-logic.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "mutant-menace-overview"
+              "title": "master-deckbuilding-logic"
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -165,7 +137,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "decks/mutant-menace/mutant-menace-overview.md",
+                "file": "protocols/master-deckbuilding-logic.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -175,7 +147,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for mutant-menace-overview"
+              "title": "Backlinks for master-deckbuilding-logic"
             }
           },
           {
@@ -184,12 +156,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "decks/mutant-menace/mutant-menace-overview.md",
+                "file": "protocols/master-deckbuilding-logic.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from mutant-menace-overview"
+              "title": "Outgoing links from master-deckbuilding-logic"
             }
           },
           {
@@ -227,13 +199,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "decks/mutant-menace/mutant-menace-overview.md",
+                "file": "protocols/master-deckbuilding-logic.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of mutant-menace-overview"
+              "title": "Outline of master-deckbuilding-logic"
             }
           }
         ]
@@ -256,9 +228,9 @@
   },
   "active": "7acbe90f0e71a240",
   "lastOpenFiles": [
+    "decks/mutant-menace/mutant-menace-overview.md",
     "decks/mutant-menace/mutant-menace-mechanics-notes (1).md",
     "decks/mutant-menace/mutant-menace-mechanics-notes.md",
-    "decks/mutant-menace/mutant-menace-overview.md",
     "decks/mutant-menace/mutant-menace-changelog.md",
     "decks/mutant-menace/decklist.md",
     "decks/mutant-menace/mutant-menace-overview (1).md",
