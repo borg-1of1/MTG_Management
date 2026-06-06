@@ -54,11 +54,11 @@ MTG_Management/
 
 Protocols are **always-on rules**. Every AI session loads the relevant protocol files as standing instructions. The AI is expected to honor these throughout the task regardless of which prompt is active.
 
-| File                           | Purpose                                                                                       |
-| ------------------------------ | --------------------------------------------------------------------------------------------- |
-| `master-deckbuilding-logic.md` | Core evaluation framework: land base first, tiered upgrade path, inventory priority           |
-| `input-contract.md`            | Defines the expected format of `_Global_Inventory` and `Current_Decklist` inputs              |
-| `bracket-constraints.md`       | Guardrail rules for staying within the Bracket 3 play space; any violation is an auto-exclude |
+| File                           | Purpose                                                                               |
+| ------------------------------ | ------------------------------------------------------------------------------------- |
+| `master-deckbuilding-logic.md` | Core evaluation framework: land base first, tiered upgrade path, inventory priority   |
+| `input-contract.md`            | Defines the expected format of `_Global_Inventory` and `Current_Decklist` inputs      |
+| `bracket-constraints.md`       | Guardrail rules for all five brackets; governs upgrade evaluation and auto-exclusions |
 
 ---
 ## Prompts
@@ -84,6 +84,16 @@ Templates are **blank reusable formats**. Copy the relevant template into a deck
 | `session-handoff.md`    | `decks/[deck-name]/session-handoff.md`    |
 
 ---
+## Docs
+
+The `docs/` folder contains human reference material that governs how the system is operated. These files are not loaded into AI sessions — they exist for the operator.
+
+|File|Purpose|
+|---|---|
+|`mtg-deck-management.md`|Moxfield folder structure, deck naming conventions, lifecycle prefixes, and proxy library rules|
+|`inventory-notes.md`|Notes on inventory quirks, proxy status, condition flags, and known anomalies in the CSV|
+
+---
 ## Workflows
 
 Use these as a loading guide — which files to feed an AI assistant for each task.
@@ -98,7 +108,7 @@ Load: protocols/master-deckbuilding-logic.md
       decks/[deck-name]/overview.md
       decks/[deck-name]/decklist.md
       decks/[deck-name]/upgrade-candidates.md
-      inventory/moxfield-export.csv
+      inventory/moxfield_haves_[YYYY-MM-DD-HHmmZ].csv
 ```
 ### Pre-Sync Audit
 
@@ -118,12 +128,13 @@ Load: protocols/master-deckbuilding-logic.md
       prompts/deck-review-prompt.md
       decks/[deck-name]/overview.md
       decks/[deck-name]/decklist.md
-      inventory/moxfield-export.csv
+      inventory/moxfield_haves_[YYYY-MM-DD-HHmmZ].csv
 ```
 
 ---
 ## Notes
 
-- **Moxfield CSV:** Retain the native Moxfield export filename (`moxfield_haves_[YYYY-MM-DD-HHmmZ].csv`). Do not rename on ingest. When multiple exports exist in `inventory/`, the most recent datestamp is the active file. Document any anomalies in `inventory/inventory-notes.md`.
+- **Moxfield CSV:** Retain the native Moxfield export filename (`moxfield_haves_[YYYY-MM-DD-HHmmZ].csv`). Do not rename on ingest. When multiple exports exist in `inventory/`, the most recent datestamp is the active file.
+- **Obsidian config:** The `.obsidian/` folder should be excluded via `.gitignore` — workspace state and appearance settings are local and do not belong in version control.
 - **Authoritative Structure:** This README is the authoritative source for repo structure. If any other document references a folder or file layout, this document takes precedence.
-- **Naming Convention:** All files and folders use hyphens, not underscores. Exception: `moxfield-export.csv` uses whatever filename Moxfield produces.
+- **Naming Convention:** All files and folders use hyphens, not underscores. Exception: Moxfield CSV exports retain their native datestamped filename format.
