@@ -57,10 +57,14 @@ Current upgrade priority: None — deck is stable. Monitor upgrade-candidates.md
 
 ## Open Questions
 
-- [ ] Confirm whether Syr Konrad + Mindcrank constitutes an early-game two-card combo for Bracket 3 purposes — resolve with playgroup via Rule Zero if needed
+- [x] Confirm whether Syr Konrad + Mindcrank constitutes an early-game two-card combo for Bracket 3 purposes — resolve with playgroup via Rule Zero if needed
 
 ---
+## Resolved Questions
 
+- Syr Konrad + Mindcrank: Confirmed Bracket 3 legal. Not an infinite combo — it is a damage-scaling engine requiring both pieces to survive, opponents to have creatures in graveyards, and no interaction. Earliest realistic assembly is turn 5–6. Neither card is on the Game Changers list. No Rule Zero conversation required.
+
+---
 ## Session Log
 
 |Date|Summary|
