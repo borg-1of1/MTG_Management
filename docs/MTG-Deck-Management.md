@@ -92,7 +92,4 @@ These high-frequency assets should be kept in a central **Proxy Library binder**
 
 ---
 
-**Information Not From Sources:** The specific "LIBRARY/Tools" folder name, the \[REF\] prefix suggestion, the numerical swap thresholds for precon categories (1-10, etc.), and the \#ProxyLibrary tag name were developed during our conversation and are not in the provided source text.
-
-**Analogy for Understanding:** Think of your **LIBRARY/Tools** folder like the **Reference Section** of a public library. You don't "check out" or "process" the encyclopedias (Game Changers lists); they stay on the shelf exactly as they are so you can look up facts while you are working on your own **Research Papers (Planning Decks)** in the study hall.
 
