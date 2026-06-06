@@ -83,12 +83,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "decks/mutant-menace/overview.md",
+                "file": "decks/mutant-menace/mutant-menace-overview.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "overview"
+              "title": "mutant-menace-overview"
             }
           }
         ],
@@ -165,7 +165,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "decks/mutant-menace/overview.md",
+                "file": "decks/mutant-menace/mutant-menace-overview.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -175,7 +175,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for overview"
+              "title": "Backlinks for mutant-menace-overview"
             }
           },
           {
@@ -184,12 +184,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "decks/mutant-menace/overview.md",
+                "file": "decks/mutant-menace/mutant-menace-overview.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from overview"
+              "title": "Outgoing links from mutant-menace-overview"
             }
           },
           {
@@ -227,13 +227,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "decks/mutant-menace/overview.md",
+                "file": "decks/mutant-menace/mutant-menace-overview.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of overview"
+              "title": "Outline of mutant-menace-overview"
             }
           }
         ]
@@ -256,10 +256,11 @@
   },
   "active": "7acbe90f0e71a240",
   "lastOpenFiles": [
+    "templates/deck-readme.md",
+    "templates/changelog.md",
+    "decks/mutant-menace/mutant-menace-overview.md",
     "docs/MTG-Deck-Management.md",
     "templates/upgrade-candidates.md",
-    "templates/changelog.md",
-    "decks/mutant-menace/overview.md",
     "README.md",
     "decks/mutant-menace",
     "decks/the-wise-mothman",
