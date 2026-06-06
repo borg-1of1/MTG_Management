@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "protocols/master-deckbuilding-logic.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "master-deckbuilding-logic"
+              "title": "README"
             }
           }
         ],
@@ -109,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "protocols/master-deckbuilding-logic.md",
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -119,7 +119,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for master-deckbuilding-logic"
+              "title": "Backlinks for README"
             }
           },
           {
@@ -128,12 +128,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "protocols/master-deckbuilding-logic.md",
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from master-deckbuilding-logic"
+              "title": "Outgoing links from README"
             }
           },
           {
@@ -171,13 +171,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "protocols/master-deckbuilding-logic.md",
+                "file": "README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of master-deckbuilding-logic"
+              "title": "Outline of README"
             }
           }
         ]
@@ -200,12 +200,12 @@
   },
   "active": "98bced49b643cef0",
   "lastOpenFiles": [
+    "protocols/MTG-Deck-Management.md",
+    "protocols/master-deckbuilding-logic.md",
     "prompts/deck-review-prompt.md",
     "prompts/comparison-logic.md",
     "protocols/web-guide-synthesis.md",
     "protocols/input-contract.md",
-    "protocols/master-deckbuilding-logic.md",
-    "protocols/MTG Deck Management.md",
     "protocols/bracket-constraints.md",
     "README.md"
   ]

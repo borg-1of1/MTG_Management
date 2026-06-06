@@ -9,37 +9,35 @@ This repository is the workflow engine for my MTG deck management system. It con
   
 
 ```
-
 MTG_Management/
-
-├── README.md                          # This file — authoritative source for structure
+├── README.md                          # This file — authoritative source for structure
 ├── decks/
-│   └── deck-name/
-│       ├── overview.md                # Commander, theme, Bracket rating
-│       ├── decklist.md                # Current list
-│       ├── changelog.md               # What changed and why (populated from template)
-│       ├── upgrade-candidates.md      # Researched options, tiered (populated from template)
-│       └── session-handoff.md         # AI session state carry-forward (populated from template)
+│   └── deck-name/
+│       ├── overview.md                # Commander, theme, Bracket rating
+│       ├── decklist.md                # Current list
+│       ├── changelog.md               # What changed and why (populated from template)
+│       ├── upgrade-candidates.md      # Researched options, tiered (populated from template)
+│       └── session-handoff.md         # AI session state carry-forward (populated from template)
 ├── cards/
-│   └── [optional per-card notes for heavily-used pieces]
+│   └── [optional per-card notes for heavily-used pieces]
 ├── inventory/
-│   ├── moxfield-export.csv            # Raw export — do not rename (see inventory-notes.md)
-│   └── inventory-notes.md            # Quirks, proxies, condition flags
+│   ├── moxfield_haves_[YYYY-MM-DD-HHmmZ].csv  # Raw export — retain native filename (see inventory-notes.md)
+│   └── inventory-notes.md            # Quirks, proxies, condition flags
 ├── protocols/
-│   ├── master-deckbuilding-logic.md   # Core evaluation framework — always-on rules
-│   ├── input-contract.md              # Defines _Global_Inventory and Current_Decklist format
-│   └── bracket3-constraints.md        # Bracket 3 guardrails — auto-exclusion criteria
+│   ├── master-deckbuilding-logic.md   # Core evaluation framework — always-on rules
+│   ├── input-contract.md              # Defines _Global_Inventory and Current_Decklist format
+│   └── bracket3-constraints.md        # Bracket 3 guardrails — auto-exclusion criteria
 ├── prompts/
-│   ├── web-guide-synthesis.md         # Task: audit and extract web source recommendations
-│   ├── comparison-logic.md            # Task: pre-sync audit of current vs. starting deck state
-│   └── deck-review-prompt.md          # Task: full deck review and upgrade pass
+│   ├── web-guide-synthesis.md         # Task: audit and extract web source recommendations
+│   ├── comparison-logic.md            # Task: pre-sync audit of current vs. starting deck state
+│   └── deck-review-prompt.md          # Task: full deck review and upgrade pass
 ├── templates/
-│   ├── changelog.md                   # template; copy → decks/[deck-name]/changelog.md
-│   ├── deck-readme.md                 # template; copy → decks/[deck-name]/overview.md
-│   ├── upgrade-candidates.md          # template; copy → decks/[deck-name]/upgrade-candidates.md
-│   └── session-handoff.md             # template; copy → decks/[deck-name]/session-handoff.md
+│   ├── changelog.md                   # template; copy → decks/[deck-name]/changelog.md
+│   ├── deck-readme.md                 # template; copy → decks/[deck-name]/overview.md
+│   ├── upgrade-candidates.md          # template; copy → decks/[deck-name]/upgrade-candidates.md
+│   └── session-handoff.md             # template; copy → decks/[deck-name]/session-handoff.md
 └── scripts/
-    └── inventory-check.py             # CSV cross-reference automation
+    └── inventory-check.py             # CSV cross-reference automation
 
 ```
 
@@ -52,7 +50,7 @@ Protocols are **always-on rules**. Every AI session loads the relevant protocol 
 | ------------------------------ | --------------------------------------------------------------------------------------------- |
 | `master-deckbuilding-logic.md` | Core evaluation framework: land base first, tiered upgrade path, inventory priority           |
 | `input-contract.md`            | Defines the expected format of `_Global_Inventory` and `Current_Decklist` inputs              |
-| `bracket3-constraints.md`      | Guardrail rules for staying within the Bracket 3 play space; any violation is an auto-exclude |
+| `bracket-constraints.md`       | Guardrail rules for staying within the Bracket 3 play space; any violation is an auto-exclude |
 
 ---
 ## Prompts
