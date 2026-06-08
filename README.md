@@ -5,7 +5,6 @@ This repository is the workflow engine for my MTG deck management system. It con
 > **Rule of thumb:** If you are establishing how the AI should *think*, it belongs in a Protocol. If you are telling it what to *do*, it belongs in a Prompt.
 
 ---
-
 ## System Overview
 
 This system is split across two roots. They are kept separate by design — the logic layer is stable and version controlled; the working layer is active and session-driven.
@@ -38,6 +37,11 @@ MTG_Management/
 │   ├── web-guide-synthesis.md         # Task: audit and extract web source recommendations
 │   ├── comparison-logic.md            # Task: pre-sync audit of current vs. starting deck state
 │   └── deck-review-prompt.md          # Task: full deck review and upgrade pass
+│
+├── guides/
+│   ├── getting-started.md             # First-time setup and first session walkthrough
+│   ├── starting-a-session.md          # How to load files and initiate a fresh session
+│   └── continuing-a-session.md        # How to resume from a session handoff file
 │
 ├── templates/
 │   ├── changelog.md                   # template; copy → MTG_Decks/decks/[deck-name]/changelog.md
@@ -96,6 +100,21 @@ Prompts are **task-specific triggers**. Load one when running that particular jo
 | `web-guide-synthesis.md` | Audits attached web sources and extracts recommendations, cross-referenced against inventory |
 | `comparison-logic.md` | Runs a pre-sync audit comparing the current deck state to the starting version |
 | `deck-review-prompt.md` | Full deck review and upgrade pass |
+
+---
+## Guides
+
+Guides are **operator-facing how-to documents**. They are not loaded into AI sessions —
+they exist to help you use the workflow correctly. Each guide includes a ready-to-use
+starter prompt you can copy directly into your AI assistant or adapt to your own style.
+
+| File | Purpose |
+|---|---|
+| `getting-started.md` | First-time setup: repo, vault, card management tool, and first deck |
+| `starting-a-session.md` | How to load files and initiate a fresh session against an existing deck |
+| `continuing-a-session.md` | How to resume mid-cycle from a session handoff file |
+
+> New to this workflow? Start with `guides/getting-started.md`.
 
 ---
 ## Templates
@@ -174,52 +193,19 @@ From MTG_Decks/:
 ---
 ## Replicating This System
 
-To set up this workflow from scratch:
+Setting up this workflow requires four things: downloading the repository, creating a
+companion folder for your deck files, setting up a card management tool with a
+collection export, and copying the templates into your first deck folder. The process
+takes about 15–30 minutes for initial setup and another 10–15 minutes per new deck
+added afterward.
 
-### 1. Clone the repo
+No coding experience is required. You do not need to use Git or the command line —
+the repository can be downloaded as a ZIP file from GitHub. The workflow runs entirely
+in plain Markdown files and your AI assistant of choice.
 
-```bash
-git clone https://github.com/[your-username]/MTG_Management.git
-```
-
-### 2. Create the companion vault
-
-Create a folder called `MTG_Decks/` (or your preferred name) anywhere on your local machine. This folder is independent of the repo — do not clone or nest it inside `MTG_Management/`.
-
-Set it up as an Obsidian vault by opening it in Obsidian. No plugins are required. The workflow is designed to be frontend-agnostic — plain Markdown only, no YAML frontmatter, no Obsidian-specific syntax.
-
-```
-MTG_Decks/
-├── decks/
-├── inventory/
-├── cards/
-└── collection-notes/
-```
-
-### 3. Set up Moxfield
-
-The system assumes Moxfield as the card database and inventory source. You will need:
-
-- A Moxfield account with your collection entered under **Haves**
-- A `[REF] Game Changers` list under **LIBRARY/Tools** manually synced to the official WotC Game Changers list — this is the operational source of truth for GC status during sessions
-- Familiarity with Moxfield's CSV export format (see `protocols/input-contract.md` for the full column schema)
-
-Refer to `docs/mtg-deck-management.md` for the recommended Moxfield folder structure, deck naming conventions, and lifecycle prefix system.
-
-### 4. Start a new deck
-
-1. Create a folder under `MTG_Decks/decks/[deck-name]/` using hyphens, not underscores
-2. Copy the four templates from `MTG_Management/templates/` into the new folder:
-   - `changelog.md`
-   - `deck-readme.md` → rename to `overview.md`
-   - `upgrade-candidates.md`
-   - `session-handoff.md`
-3. Populate `overview.md` with the commander, color identity, bracket target, and origin
-4. Export your Moxfield collection CSV and place it in `MTG_Decks/inventory/` using the native Moxfield filename
-
-### 5. Run a session
-
-Load the relevant files listed in the Workflows section above into your AI assistant. The protocol files establish standing rules; the prompt file drives the specific task. The deck files and inventory CSV provide the working context.
+> For the full step-by-step setup guide, see `guides/getting-started.md`. That document
+> is the authoritative source for setup instructions and includes a starter prompt for
+> your first session.
 
 ---
 ## Notes
