@@ -5,7 +5,11 @@ This file carries state between AI sessions. It is overwritten at the end of eac
 ---
 ## Current Deck State
 
-Last Session Date: [YYYY-MM-DD] Last Session Goal: [What the last session was trying to accomplish] Last Session Status: [Complete / Partial — what was left unfinished] Current Bracket Target: [1 / 2 / 3 / 4 / 5] Current Phase: [1 — Land & Mana / 2 — Spells / 3 — Web Synthesis / 4 — Luxury / 5 — Stable]
+Last Session Date: [YYYY-MM-DD] 
+Last Session Goal: [What the last session was trying to accomplish] 
+Last Session Status: [Complete / Partial — what was left unfinished]
+Current Bracket Target: [1 / 2 / 3 / 4 / 5] 
+Current Phase: [1 — Land & Mana / 2 — Spells / 3 — Web Synthesis / 4 — Luxury / 5 — Strategy]
 
 ---
 ## Confirmed Changes Pending Physical Update
