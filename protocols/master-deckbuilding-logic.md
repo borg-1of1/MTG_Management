@@ -81,6 +81,21 @@ If a proposed swap increases the deck's average CMC and ramp was not added to co
 
 Do not present this as a risk note buried in a summary. It must appear as a named flag that requires acknowledgment. If multiple swaps in a session cumulatively increase CMC, apply the flag to the cumulative effect at the end of the session even if no individual swap triggered it.
 
+### 6. The Best-in-Class Override Rule — Unowned vs. Owned Alternatives
+
+The Zero-Cost Rule (Directive 2) prefers inventory cards "at equivalent power level." This directive governs the case where they are not equivalent — where a web guide or community source recommends an unowned card as "best in class," "optimal," or similarly framed, and a comparable card already exists in `_Global_Inventory`.
+
+In this case, do not default to the unowned card on the strength of its reputation alone. The output must include an explicit flag before the unowned card is added to any swap list:
+
+> **FLAG: Best-in-class recommendation is unowned. [Unowned Card] vs. [Owned Alternative] — confirm power gap before proceeding.**
+
+The flag must state:
+- The estimated purchase cost of the unowned card
+- The specific mechanical edge it provides over the owned alternative (not just "stronger" or "better," but the concrete functional difference — e.g., instant speed vs. sorcery speed, broader answer range, lower CMC)
+- That the owned alternative remains a valid, biased-toward default if the user does not want to confirm the purchase
+
+If no comparable owned alternative exists, this rule does not apply and the unowned card may be recommended under standard Phase 3 / Phase 4 handling. This rule does not override the Zero-Cost Rule — it governs only the cases the Zero-Cost Rule's "equivalent power level" clause leaves unresolved.
+
 ---
 ## The Tiered Upgrade Path
 
@@ -124,6 +139,7 @@ Incorporate recommendations from web sources (EDHREC, Command Zone, community gu
 Evaluation targets:
 - Run each source through `prompts/web-guide-synthesis.md`
 - Cross-reference all recommendations against `_Global_Inventory` — inventory cards are always preferred over purchase recommendations
+- If a source frames an unowned card as best-in-class against an owned alternative, apply the Best-in-Class Override Rule (Directive 6) before including it in any swap list
 - Apply the bracket evaluation checklist from `bracket-constraints.md` to every recommendation — do not inherit the source guide's bracket assessment
 - Flag any recommended card on the Game Changers list with current GC budget status
 - Resolve conflicts between sources using the priority order defined in `prompts/web-guide-synthesis.md`
