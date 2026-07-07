@@ -50,7 +50,7 @@ MTG_Management/
 │   ├── changelog.md                   # template; copy → MTG_Decks/decks/[deck-name]/changelog.md
 │   ├── deck-readme.md                 # template; copy → MTG_Decks/decks/[deck-name]/deck-readme.md
 │   ├── upgrade-candidates.md          # template; copy → MTG_Decks/decks/[deck-name]/upgrade-candidates.md
-|   ├── build-candidates.md            # template; copy → MTG_Decks/decks/[deck-name]/build-cadidates.md
+|   ├── build-candidates.md            # template; copy → MTG_Decks/decks/[deck-name]/build-candidates.md
 │   └── session-handoff.md             # template; copy → MTG_Decks/decks/[deck-name]/session-handoff.md
 │
 └── scripts/
@@ -105,7 +105,7 @@ Prompts are **task-specific triggers**. Load one when running that particular jo
 | `web-guide-synthesis.md`        | Audits attached web sources and extracts recommendations, cross-referenced against inventory                                                               |
 | `comparison-logic.md`           | Runs a pre-sync audit comparing the current deck state to the starting version                                                                             |
 | `deck-review-prompt.md`         | Full deck review and upgrade pass                                                                                                                          |
-| `build-from-inventory-prompt.m` | Session trigger for build-from-inventory workflow. Includes intake template, worked examples (commander-led and theme-led), and file loading instructions. |
+| `build-from-inventory-prompt.md` | Session trigger for build-from-inventory workflow. Includes intake template, worked examples (commander-led and theme-led), and file loading instructions. |
 
 ---
 ## Guides
@@ -131,7 +131,7 @@ Templates are **blank reusable formats**. Copy the relevant template into a deck
 | File                            | Deploys To                                                                                                                                                                                                                      |
 | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `changelog.md`                  | `MTG_Decks/decks/[deck-name]/changelog.md`                                                                                                                                                                                      |
-| `deck-readme.md`                | `MTG_Decks/decks/[deck-name]/overview.md`                                                                                                                                                                                       |
+| `deck-readme.md`                | `MTG_Decks/decks/[deck-name]/deck-readme.md`                                                                                                                                                                                       |
 | `upgrade-candidates.md`         | `MTG_Decks/decks/[deck-name]/upgrade-candidates.md`                                                                                                                                                                             |
 | `session-handoff.md`            | `MTG_Decks/decks/[deck-name]/session-handoff.md`                                                                                                                                                                                |
 | `templates/build-candidates.md` | Working draft output for build-from-inventory sessions. Contains phase-by-phase candidate tables, cut log, and future upgrade tracking. Promote to `decklist.md` and use as source for `deck-readme.md` when build is complete. |
