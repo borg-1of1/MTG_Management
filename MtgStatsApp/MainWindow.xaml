@@ -1,0 +1,44 @@
+<ui:FluentWindow x:Class="MtgStatsApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:local="clr-namespace:MtgStatsApp"
+        xmlns:views="clr-namespace:MtgStatsApp.Views"
+        mc:Ignorable="d"
+        Title="MTG Stats Manager" Height="750" Width="1150"
+        WindowStartupLocation="CenterScreen">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Modern TitleBar -->
+        <ui:TitleBar Title="MTG Stats Manager" Grid.Row="0">
+            <ui:TitleBar.Icon>
+                <ui:SymbolIcon Symbol="Database24" />
+            </ui:TitleBar.Icon>
+        </ui:TitleBar>
+        
+        <ui:NavigationView x:Name="RootNavigation" Grid.Row="1"
+                           PaneDisplayMode="Left"
+                           IsBackButtonVisible="Collapsed">
+            <ui:NavigationView.MenuItems>
+                <ui:NavigationViewItem Content="Dashboard" Icon="{ui:SymbolIcon Home24}" TargetPageType="{x:Type views:DashboardPage}" />
+                <ui:NavigationViewItem Content="Log a Game" Icon="{ui:SymbolIcon DocumentAdd24}" TargetPageType="{x:Type views:LogGamePage}" />
+                <ui:NavigationViewItem Content="Game History" Icon="{ui:SymbolIcon Clock24}" TargetPageType="{x:Type views:HistoryPage}" />
+                <ui:NavigationViewItem Content="My Decks" Icon="{ui:SymbolIcon Book24}" TargetPageType="{x:Type views:DecksPage}" />
+                <ui:NavigationViewItem Content="Horde Decks" Icon="{ui:SymbolIcon PeopleCommunity24}" TargetPageType="{x:Type views:HordeDecksPage}" />
+            </ui:NavigationView.MenuItems>
+            
+            <ui:NavigationView.FooterMenuItems>
+                <ui:NavigationViewItem Content="Database Connection" Icon="{ui:SymbolIcon DatabaseSettings24}" TargetPageType="{x:Type views:DbSettingsPage}" />
+            </ui:NavigationView.FooterMenuItems>
+
+            <Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden"/>
+        </ui:NavigationView>
+    </Grid>
+</ui:FluentWindow>

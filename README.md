@@ -84,22 +84,24 @@ MTG_Decks/
 
 Protocols are **always-on rules**. Every AI session loads the relevant protocol files as standing instructions. The AI honors these throughout the session regardless of which prompt is active.
 
-| File | Purpose |
-|---|---|
-| `master-deckbuilding-logic.md` | Core evaluation framework: land base first, tiered upgrade path, inventory priority |
-| `input-contract.md` | Defines the expected format of `_Global_Inventory` and `_Current_Decklist` inputs |
-| `bracket-constraints.md` | Guardrail rules for all five brackets; governs upgrade evaluation and auto-exclusions |
+| File                            | Purpose                                                                                                                                                                                                                                    |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `master-deckbuilding-logic.md`  | Core evaluation framework: land base first, tiered upgrade path, inventory priority                                                                                                                                                        |
+| `input-contract.md`             | Defines the expected format of `_Global_Inventory` and `_Current_Decklist` inputs                                                                                                                                                          |
+| `bracket-constraints.md`        | Guardrail rules for all five brackets; governs upgrade evaluation and auto-exclusions                                                                                                                                                      |
+| `build-from-inventory-logic.md` | Governs all build-from-scratch sessions. Defines the six-phase build process, entry modes (commander-led, theme-led, or both), inventory-first selection rules, and cut prioritization logic. Companion to `master-deckbuilding-logic.md`. |
 
 ---
 ## Prompts
 
 Prompts are **task-specific triggers**. Load one when running that particular job. These are not standing rules — they drive a specific output.
 
-| File | Purpose |
-|---|---|
-| `web-guide-synthesis.md` | Audits attached web sources and extracts recommendations, cross-referenced against inventory |
-| `comparison-logic.md` | Runs a pre-sync audit comparing the current deck state to the starting version |
-| `deck-review-prompt.md` | Full deck review and upgrade pass |
+| File                            | Purpose                                                                                                                                                    |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `web-guide-synthesis.md`        | Audits attached web sources and extracts recommendations, cross-referenced against inventory                                                               |
+| `comparison-logic.md`           | Runs a pre-sync audit comparing the current deck state to the starting version                                                                             |
+| `deck-review-prompt.md`         | Full deck review and upgrade pass                                                                                                                          |
+| `build-from-inventory-prompt.m` | Session trigger for build-from-inventory workflow. Includes intake template, worked examples (commander-led and theme-led), and file loading instructions. |
 
 ---
 ## Guides
@@ -108,11 +110,12 @@ Guides are **operator-facing how-to documents**. They are not loaded into AI ses
 they exist to help you use the workflow correctly. Each guide includes a ready-to-use
 starter prompt you can copy directly into your AI assistant or adapt to your own style.
 
-| File | Purpose |
-|---|---|
-| `getting-started.md` | First-time setup: repo, vault, card management tool, and first deck |
-| `starting-a-session.md` | How to load files and initiate a fresh session against an existing deck |
-| `continuing-a-session.md` | How to resume mid-cycle from a session handoff file |
+| File                      | Purpose                                                                                                                                                             |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `getting-started.md`      | First-time setup: repo, vault, card management tool, and first deck                                                                                                 |
+| `starting-a-session.md`   | How to load files and initiate a fresh session against an existing deck                                                                                             |
+| `continuing-a-session.md` | How to resume mid-cycle from a session handoff file                                                                                                                 |
+| `building-a-deck.md`      | Step-by-step operator guide for the build-from-inventory workflow. Covers session setup, phase-by-phase process, promotion checklist for `deck-readme.md`, and FAQ. |
 
 > New to this workflow? Start with `guides/getting-started.md`.
 
@@ -121,12 +124,13 @@ starter prompt you can copy directly into your AI assistant or adapt to your own
 
 Templates are **blank reusable formats**. Copy the relevant template into a deck folder under `MTG_Decks/decks/` and populate it. The version inside `templates/` should always remain blank.
 
-| File | Deploys To |
-|---|---|
-| `changelog.md` | `MTG_Decks/decks/[deck-name]/changelog.md` |
-| `deck-readme.md` | `MTG_Decks/decks/[deck-name]/overview.md` |
-| `upgrade-candidates.md` | `MTG_Decks/decks/[deck-name]/upgrade-candidates.md` |
-| `session-handoff.md` | `MTG_Decks/decks/[deck-name]/session-handoff.md` |
+| File                            | Deploys To                                                                                                                                                                                                                      |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `changelog.md`                  | `MTG_Decks/decks/[deck-name]/changelog.md`                                                                                                                                                                                      |
+| `deck-readme.md`                | `MTG_Decks/decks/[deck-name]/overview.md`                                                                                                                                                                                       |
+| `upgrade-candidates.md`         | `MTG_Decks/decks/[deck-name]/upgrade-candidates.md`                                                                                                                                                                             |
+| `session-handoff.md`            | `MTG_Decks/decks/[deck-name]/session-handoff.md`                                                                                                                                                                                |
+| `templates/build-candidates.md` | Working draft output for build-from-inventory sessions. Contains phase-by-phase candidate tables, cut log, and future upgrade tracking. Promote to `decklist.md` and use as source for `deck-readme.md` when build is complete. |
 
 ---
 ## Docs
@@ -189,6 +193,22 @@ From MTG_Decks/:
       decks/[deck-name]/changelog.md
       inventory/moxfield_haves_[YYYY-MM-DD-HHmmZ].csv
 ```
+
+### Build a Deck from Inventory
+
+Use this workflow to construct a complete Commander deck from scratch using only cards you already own. The process is phased and disciplined — you build wide across six phases, then cut down to 99 in a final review pass.
+
+**When to use:** Starting a new deck with no existing list. No purchases assumed.
+
+**Load these files:**
+- `protocols/build-from-inventory-logic.md`
+- `protocols/bracket-constraints.md`
+- `protocols/master-deckbuilding-logic.md`
+- `protocols/input-contract.md`
+
+**Start here:** `prompts/build-from-inventory-prompt.md`
+
+**Output:** `build-candidates.md` → promote to `decklist.md` and `deck-readme.md` when satisfied
 
 ---
 ## Replicating This System

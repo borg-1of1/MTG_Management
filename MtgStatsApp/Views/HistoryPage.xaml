@@ -1,0 +1,186 @@
+<Page x:Class="MtgStatsApp.Views.HistoryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:local="clr-namespace:MtgStatsApp.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1000"
+      Title="Game History">
+
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Page.Resources>
+
+    <Grid Margin="32">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,24">
+            <ui:TextBlock FontTypo="Title" Text="Game History" />
+            <ui:TextBlock FontTypo="Caption" Foreground="{DynamicResource TextFillColorSecondaryBrush}" 
+                          Text="View, analyze, and manage logged matches. Selecting a game shows full stats." Margin="0,4,0,0" />
+        </StackPanel>
+
+        <!-- Main Layout -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- DataGrid Panel -->
+            <ui:Card Grid.Column="0" Margin="0,0,16,0" Padding="12">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <ui:InfoBar x:Name="InfoBarHistory" IsOpen="False" Title="Message" Message="" Severity="Success" Grid.Row="0" Margin="4,0,4,12"/>
+
+                    <DataGrid x:Name="DgGames" Grid.Row="1" SelectionChanged="OnGameSelectionChanged"
+                              AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column"
+                              Background="Transparent" BorderThickness="0" GridLinesVisibility="Horizontal"
+                              HorizontalGridLinesBrush="{DynamicResource ControlStrokeColorDefaultBrush}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="100" />
+                            <DataGridTextColumn Header="Deck" Binding="{Binding DeckName}" Width="*" />
+                            <DataGridTextColumn Header="Type" Binding="{Binding Source, ConverterCulture=en-US}" Width="80" />
+                            <DataGridTextColumn Header="Turns" Binding="{Binding TurnCount}" Width="60" />
+                            <DataGridTextColumn Header="Result" Binding="{Binding Result}" Width="70" />
+                            <DataGridTextColumn Header="Salt Obs." Binding="{Binding SaltObserved}" Width="80" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </ui:Card>
+
+            <!-- Details Sidebar Card -->
+            <ui:Card Grid.Column="1" Padding="20">
+                <Grid>
+                    <!-- Detail View (Visible when a game is selected) -->
+                    <Grid x:Name="GridDetails" Visibility="Collapsed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Header -->
+                        <StackPanel Grid.Row="0" Margin="0,0,0,16">
+                            <ui:TextBlock x:Name="TxtDetailTitle" FontTypo="Subtitle" Text="Game Details" />
+                            <ui:TextBlock x:Name="TxtDetailSubtitle" FontTypo="Caption" Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="Live Match — 2026-06-30" />
+                        </StackPanel>
+
+                        <!-- Scrollable Info Panel -->
+                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,0,0,12">
+                            <StackPanel Spacing="12">
+                                
+                                <!-- Core Stats Row -->
+                                <ui:Card Padding="12" Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <ui:TextBlock Text="Mulligans" FontTypo="Caption" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                            <ui:TextBlock x:Name="TxtDetailMulligans" Text="0" FontTypo="BodyStrong"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <ui:TextBlock Text="Opening Lands" FontTypo="Caption" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                            <ui:TextBlock x:Name="TxtDetailLands" Text="3" FontTypo="BodyStrong"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </ui:Card>
+
+                                <!-- Play Metrics -->
+                                <StackPanel Spacing="6">
+                                    <Grid>
+                                        <ui:TextBlock Text="Cmd Cast Turn:" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                        <ui:TextBlock x:Name="TxtDetailCmdCast" Text="4" FontTypo="BodyStrong" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                    <Grid>
+                                        <ui:TextBlock Text="Cmd Recasts:" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                        <ui:TextBlock x:Name="TxtDetailCmdRecasts" Text="0" FontTypo="BodyStrong" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                    <Grid>
+                                        <ui:TextBlock Text="Wipes Cast / Faced:" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                        <ui:TextBlock x:Name="TxtDetailWipes" Text="0 / 1" FontTypo="BodyStrong" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                    <Grid x:Name="GridDetailWipeRecover" Visibility="Collapsed">
+                                        <ui:TextBlock Text="Recovered from Wipe:" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                        <ui:TextBlock x:Name="TxtDetailWipeRecover" Text="No" FontTypo="BodyStrong" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                    <Grid>
+                                        <ui:TextBlock Text="Salt Level (Prior / Obs):" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                        <ui:TextBlock x:Name="TxtDetailSalt" Text="3 / 3" FontTypo="BodyStrong" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </StackPanel>
+
+                                <!-- Horde Specific Parameters (Visible only for Horde games) -->
+                                <StackPanel x:Name="PanelHordeDetails" Spacing="8" Visibility="Collapsed">
+                                    <Separator Margin="0,4"/>
+                                    <ui:TextBlock Text="Horde Setup" FontTypo="BodyStrong" />
+                                    
+                                    <Grid>
+                                        <ui:TextBlock Text="Horde Adversary:" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                        <ui:TextBlock x:Name="TxtDetailHordeDeck" Text="Zombie Horde" FontTypo="BodyStrong" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                    <Grid>
+                                        <ui:TextBlock Text="Players / Life:" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                        <ui:TextBlock x:Name="TxtDetailPlayersLife" Text="2 Players / 40 Life" FontTypo="BodyStrong" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                    <Grid>
+                                        <ui:TextBlock Text="Setup (Size / Draws / Mult):" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                        <ui:TextBlock x:Name="TxtDetailSetup" Text="100% / 1 draw / 1x" FontTypo="BodyStrong" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                    <Grid>
+                                        <ui:TextBlock Text="Milestone Target:" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                        <ui:TextBlock x:Name="TxtDetailMilestone" Text="0%" FontTypo="BodyStrong" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                    
+                                    <StackPanel x:Name="PanelDetailCoOp" Spacing="4">
+                                        <ui:TextBlock Text="Co-op Partner Commanders:" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                        <ui:Card Padding="8,6" Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}">
+                                            <ui:TextBlock x:Name="TxtDetailCoOp" Text="None" FontTypo="Caption" TextWrapping="Wrap"/>
+                                        </ui:Card>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <!-- Notes -->
+                                <Separator Margin="0,4"/>
+                                <StackPanel Spacing="4">
+                                    <ui:TextBlock Text="Game Notes" FontTypo="BodyStrong"/>
+                                    <ui:Card Padding="12" HorizontalAlignment="Stretch" Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}">
+                                        <ScrollViewer Height="80" VerticalScrollBarVisibility="Auto">
+                                            <ui:TextBlock x:Name="TxtDetailNotes" Text="No notes recorded." TextWrapping="Wrap" FontTypo="Caption" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                        </ScrollViewer>
+                                    </ui:Card>
+                                </StackPanel>
+                            </StackPanel>
+                        </ScrollViewer>
+
+                        <!-- Actions footer -->
+                        <Grid Grid.Row="2" Margin="0,8,0,0">
+                            <ui:Button Content="Delete Log Entry" Appearance="Danger" Icon="{ui:SymbolIcon Delete24}" 
+                                       Click="OnDeleteGameClick" HorizontalAlignment="Left" Width="160"/>
+                        </Grid>
+                    </Grid>
+
+                    <!-- Placeholder View (Visible when no game is selected) -->
+                    <StackPanel x:Name="PanelPlaceholder" VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="8">
+                        <ui:SymbolIcon Symbol="WindowAd24" Size="48" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                        <ui:TextBlock Text="Select a game to view details" FontTypo="BodyStrong" HorizontalAlignment="Center"/>
+                        <ui:TextBlock Text="Complete stats and qualitative notes will load here." FontTypo="Caption" 
+                                      Foreground="{DynamicResource TextFillColorSecondaryBrush}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </ui:Card>
+        </Grid>
+    </Grid>
+</Page>
