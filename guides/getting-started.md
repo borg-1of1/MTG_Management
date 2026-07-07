@@ -99,7 +99,7 @@ Copy the four template files from `MTG_Management/templates/` into that folder:
 
 | Template file | Rename to |
 |---|---|
-| `deck-readme.md` | `overview.md` |
+| `deck-readme.md` | `deck-readme.md` |
 | `changelog.md` | `changelog.md` |
 | `upgrade-candidates.md` | `upgrade-candidates.md` |
 | `session-handoff.md` | `session-handoff.md` |
