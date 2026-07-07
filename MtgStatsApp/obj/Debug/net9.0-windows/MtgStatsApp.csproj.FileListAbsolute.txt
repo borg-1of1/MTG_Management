@@ -1,4 +1,0 @@
-D:\repos\MTG_Management\MtgStatsApp\obj\Debug\net9.0-windows\MtgStatsApp.csproj.AssemblyReference.cache
-D:\repos\MTG_Management\MtgStatsApp\obj\Debug\net9.0-windows\MtgStatsApp_MarkupCompile.cache
-D:\repos\MTG_Management\MtgStatsApp\obj\Debug\net9.0-windows\App.baml
-D:\repos\MTG_Management\MtgStatsApp\obj\Debug\net9.0-windows\App.g.cs
