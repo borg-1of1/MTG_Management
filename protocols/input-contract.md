@@ -9,7 +9,7 @@ This document defines the format and handling rules for every input that gets pa
 |---|---|---|---|
 |`_Global_Inventory`|Moxfield full collection export|CSV|Yes|
 |`_Current_Decklist`|Moxfield deck text export|Plain text|Yes|
-|`_Bracket_Target`|Deck's `overview.md`|Single value (1–5)|Yes|
+|`_Bracket_Target`|Deck's `deck-readme.md`|Single value (1–5)|Yes|
 |`_Session_Changelog`|Deck's `changelog.md`|Markdown|Recommended|
 |`_Web_Sources`|URLs or pasted guide text|Plain text / URLs|Optional|
 
@@ -109,12 +109,12 @@ The plain name list is sufficient. Card names are unambiguous for deckbuilding p
 ---
 ## `_Bracket_Target`
 
-**Source:** Deck's `overview.md` — the `Bracket` field  
+**Source:** Deck's `deck-readme.md` — the `Bracket` field  
 **Format:** Single integer, 1 through 5
 
 This value governs which rules from `bracket-constraints.md` apply for the entire session. The AI must confirm the bracket target at the start of every session before evaluating any upgrade candidate.
 
-If `overview.md` is not provided, the AI must ask for the bracket target before proceeding. Defaulting to Bracket 3 without confirmation is not permitted.
+If `deck-readme.md` is not provided, the AI must ask for the bracket target before proceeding. Defaulting to Bracket 3 without confirmation is not permitted.
 
 ---
 ## `_Session_Changelog`
@@ -146,7 +146,7 @@ Before beginning any deckbuilding session, confirm the following inputs are pres
 
 - [ ] `_Global_Inventory` — collection CSV loaded
 - [ ] `_Current_Decklist` — flat text decklist loaded
-- [ ] `_Bracket_Target` — confirmed from `overview.md`
+- [ ] `_Bracket_Target` — confirmed from `deck-readme.md`
 - [ ] `_Session_Changelog` — loaded if it exists; absence noted if not
 - [ ] `protocols/master-deckbuilding-logic.md` — loaded
 - [ ] `protocols/bracket-constraints.md` — loaded
