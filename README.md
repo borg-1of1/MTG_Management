@@ -31,22 +31,26 @@ MTG_Management/
 ├── protocols/
 │   ├── master-deckbuilding-logic.md   # Core evaluation framework — always-on rules
 │   ├── input-contract.md              # Defines _Global_Inventory and _Current_Decklist format
+│   ├── build-from-inventory-logic.md  # Core framework for building from cards on hand
 │   └── bracket-constraints.md        # Bracket guardrails for all five brackets
 │
 ├── prompts/
 │   ├── web-guide-synthesis.md         # Task: audit and extract web source recommendations
 │   ├── comparison-logic.md            # Task: pre-sync audit of current vs. starting deck state
+│   ├── build-from-inventory-prompt.md # Task: prompt for building from scratch, no decklist required
 │   └── deck-review-prompt.md          # Task: full deck review and upgrade pass
 │
 ├── guides/
 │   ├── getting-started.md             # First-time setup and first session walkthrough
 │   ├── starting-a-session.md          # How to load files and initiate a fresh session
+│   ├── building-a-deck.md             # How to build a deck using this system
 │   └── continuing-a-session.md        # How to resume from a session handoff file
 │
 ├── templates/
 │   ├── changelog.md                   # template; copy → MTG_Decks/decks/[deck-name]/changelog.md
-│   ├── deck-readme.md                 # template; copy → MTG_Decks/decks/[deck-name]/overview.md
+│   ├── deck-readme.md                 # template; copy → MTG_Decks/decks/[deck-name]/deck-readme.md
 │   ├── upgrade-candidates.md          # template; copy → MTG_Decks/decks/[deck-name]/upgrade-candidates.md
+|   ├── build-candidates.md            # template; copy → MTG_Decks/decks/[deck-name]/build-cadidates.md
 │   └── session-handoff.md             # template; copy → MTG_Decks/decks/[deck-name]/session-handoff.md
 │
 └── scripts/
@@ -60,7 +64,7 @@ MTG_Management/
 MTG_Decks/
 ├── decks/
 │   └── deck-name/
-│       ├── overview.md                # Commander, theme, bracket target
+│       ├── deck-readme.md             # Commander, theme, bracket target
 │       ├── decklist.md                # Current list — Moxfield is authoritative
 │       ├── changelog.md               # Append-only session ledger (populated from template)
 │       ├── upgrade-candidates.md      # Researched options, tiered (populated from template)
@@ -158,7 +162,7 @@ From MTG_Management/:
       prompts/web-guide-synthesis.md
 
 From MTG_Decks/:
-      decks/[deck-name]/overview.md
+      decks/[deck-name]/deck-readme.md
       decks/[deck-name]/decklist.md
       decks/[deck-name]/upgrade-candidates.md
       decks/[deck-name]/changelog.md
@@ -188,7 +192,7 @@ From MTG_Management/:
       prompts/deck-review-prompt.md
 
 From MTG_Decks/:
-      decks/[deck-name]/overview.md
+      decks/[deck-name]/deck-readme.md
       decks/[deck-name]/decklist.md
       decks/[deck-name]/changelog.md
       inventory/moxfield_haves_[YYYY-MM-DD-HHmmZ].csv
@@ -196,19 +200,22 @@ From MTG_Decks/:
 
 ### Build a Deck from Inventory
 
+```
 Use this workflow to construct a complete Commander deck from scratch using only cards you already own. The process is phased and disciplined — you build wide across six phases, then cut down to 99 in a final review pass.
 
 **When to use:** Starting a new deck with no existing list. No purchases assumed.
 
 **Load these files:**
-- `protocols/build-from-inventory-logic.md`
-- `protocols/bracket-constraints.md`
-- `protocols/master-deckbuilding-logic.md`
-- `protocols/input-contract.md`
+From MTG_Management/:
+     protocols/build-from-inventory-logic.md
+     protocols/bracket-constraints.md
+     protocols/master-deckbuilding-logic.md
+     protocols/input-contract.md
 
 **Start here:** `prompts/build-from-inventory-prompt.md`
 
 **Output:** `build-candidates.md` → promote to `decklist.md` and `deck-readme.md` when satisfied
+```
 
 ---
 ## Replicating This System
