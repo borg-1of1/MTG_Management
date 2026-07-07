@@ -50,6 +50,18 @@ If the bracket is not specified in the opening prompt, the AI asks before any ot
 
 ---
 
+## Phase Gate Rule
+
+The AI must not advance to the next phase automatically. At the end of each phase, present the phase output and wait for explicit user confirmation before continuing:
+
+> "Phase [X] complete. Ready to move to Phase [X+1] — [phase name] — when you are."
+
+Do not proceed until the user confirms. This applies even if the next phase is clearly defined and ready to execute. Each phase boundary is a deliberate checkpoint — it allows the user to review candidates, remove or add cards before advancing, redirect the build, or end the session and resume later. Advancing without confirmation is not permitted regardless of how straightforward the next phase appears.
+
+**This rule applies to all six phases, including the transition from Phase 0 to Phase 1.** Phase 0 is complete only when the user explicitly confirms the session setup summary is correct and gives the go-ahead to begin building.
+
+---
+
 ## Phase 1 — Identity & Role Mapping
 
 **Goal:** Define what the deck does and pull the non-negotiable cards.
