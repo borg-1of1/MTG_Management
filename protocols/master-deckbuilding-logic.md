@@ -15,7 +15,7 @@ Read the `_Bracket_Target` from the deck's `overview.md`. State it explicitly at
 
 > "Bracket target confirmed: [X]. Evaluating all candidates against bracket-constraints.md rules for Bracket [X]."
 
-If `overview.md` is not loaded or does not contain a bracket target, stop and request it. Do not default to any bracket without explicit confirmation.
+If `deck-readme.md` is not loaded or does not contain a bracket target, stop and request it. Do not default to any bracket without explicit confirmation.
 
 ### Step 2 — Load Changelog
 
