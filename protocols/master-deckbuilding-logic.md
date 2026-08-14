@@ -96,6 +96,17 @@ The flag must state:
 
 If no comparable owned alternative exists, this rule does not apply and the unowned card may be recommended under standard Phase 3 / Phase 4 handling. This rule does not override the Zero-Cost Rule — it governs only the cases the Zero-Cost Rule's "equivalent power level" clause leaves unresolved.
 
+### 7. Oracle Verification Rule — Card Text Authority
+
+When `_Card_Oracle` is present in the session inputs:
+
+- Oracle text from `_Card_Oracle` **supersedes** any card text recalled from training memory. Do not describe a card's mechanics from memory if the card appears in `_Card_Oracle`.
+- Any candidate card suggested during the session that is **not present in `_Card_Oracle`** must be flagged as **unverified** before mechanical evaluation:
+
+> **UNVERIFIED: [Card Name] is not in _Card_Oracle. Mechanical description is from training memory and may be inaccurate. Confirm oracle text before acting on this evaluation.**
+
+When `_Card_Oracle` is absent, note this at session start and rely on the manual Scryfall fallback — the user may paste individual oracle text blocks inline as needed. See `input-contract.md` for full `_Card_Oracle` specification and mid-session lookup instructions.
+
 ---
 ## The Tiered Upgrade Path
 
