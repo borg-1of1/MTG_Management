@@ -157,8 +157,8 @@ _MTGJSON_SELECT = """
     INNER JOIN mtgjson.sets s ON s.code = c.setCode
     WHERE (c.name = ? OR c.name LIKE ? || ' //%')
       AND (c.language IS NULL OR c.language = 'English')
-      AND c.isPromo  = 0
-      AND c.isRebalanced = 0
+      AND COALESCE(c.isPromo, 0) = 0
+      AND COALESCE(c.isRebalanced, 0) = 0
     ORDER BY s.releaseDate DESC
     LIMIT 1
 """
@@ -188,8 +188,8 @@ _MTGJSON_DFC_FACES = """
         SELECT uuid FROM mtgjson.cards
         WHERE (name = ? OR name LIKE ? || ' //%')
           AND (language IS NULL OR language = 'English')
-          AND isPromo = 0
-          AND isRebalanced = 0
+          AND COALESCE(isPromo, 0) = 0
+          AND COALESCE(isRebalanced, 0) = 0
         ORDER BY (
             SELECT releaseDate FROM mtgjson.sets WHERE code = setCode
         ) DESC
@@ -203,8 +203,8 @@ _MTGJSON_DFC_FACES = """
                 SELECT uuid FROM mtgjson.cards
                 WHERE (name = ? OR name LIKE ? || ' //%')
                   AND (language IS NULL OR language = 'English')
-                  AND isPromo = 0
-                  AND isRebalanced = 0
+                  AND COALESCE(isPromo, 0) = 0
+                  AND COALESCE(isRebalanced, 0) = 0
                 ORDER BY (
                     SELECT releaseDate FROM mtgjson.sets WHERE code = setCode
                 ) DESC
@@ -212,8 +212,8 @@ _MTGJSON_DFC_FACES = """
             ) || '%'
         )
         AND (language IS NULL OR language = 'English')
-        AND isPromo = 0
-        AND isRebalanced = 0
+        AND COALESCE(isPromo, 0) = 0
+        AND COALESCE(isRebalanced, 0) = 0
     )
     ORDER BY c.side ASC, s.releaseDate DESC
 """
