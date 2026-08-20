@@ -3,13 +3,34 @@
 This document defines the format and handling rules for every input that gets passed into an AI-assisted deckbuilding session. All prompt and protocol files reference these definitions. If an input format changes, update this document first.
 
 ---
+## Session Modes
+
+This workflow supports two session modes depending on how the AI is connected. The inputs, their sources, and the loading checklist differ between them.
+
+### MCP-Connected Session
+
+The AI has direct read access to the local filesystem via MCP. All inputs are read directly from disk — no manual copy-paste required. The AI reads each file at session start using the canonical paths defined in each input section below.
+
+**MCP canonical roots:**
+- Deck vault: `C:\MTG_Decks\`
+- Management repo: `D:\repos\MTG_Management\`
+
+When operating in MCP mode, the AI must still confirm each input was successfully read before proceeding. A successful directory listing or file read is sufficient confirmation — do not ask the user to paste content that was already read from disk.
+
+### Manual Session
+
+The AI has no filesystem access. The user pastes file contents directly into the session. All inputs arrive as inline text blocks. The loading checklist and behavior are identical to MCP mode — the only difference is the delivery mechanism.
+
+If it is not clear which mode applies, the AI should check whether MCP file tools are available. If they are, operate in MCP mode.
+
+---
 ## Inputs Overview
 
 |Variable|Source|Format|Required|
 |---|---|---|---|
 |`_Global_Inventory`|Moxfield full collection export|CSV|Yes|
 |`_Current_Decklist`|`decklist.md` — populated from Moxfield "Copy for Moxfield" export|Markdown file|Yes|
-|`_Bracket_Target`|Deck's `deck-readme.md`|Single value (1–5)|Yes|
+|`_Bracket_Target`|Deck's `overview.md`|Single value (1–5)|Yes|
 |`_Session_Changelog`|Deck's `changelog.md`|Markdown|Recommended|
 |`_Card_Oracle`|`card-lookup.py` output|Plain text block|Recommended|
 |`_Web_Sources`|URLs or pasted guide text|Plain text / URLs|Optional|
@@ -17,9 +38,13 @@ This document defines the format and handling rules for every input that gets pa
 ---
 ## `_Global_Inventory`
 
-**Source:** Moxfield full collection export (CSV)  
-**Export path:** `inventory/moxfield_haves_[YYYY-MM-DD-HHmmZ].csv`  
+**Source:** Moxfield full collection export (CSV)
+**Export path:** `C:\MTG_Decks\inventory\moxfield_haves_[YYYY-MM-DD-HHmmZ].csv`
 **Do not rename** the export file — use the native Moxfield filename format. When multiple exports exist, the most recent datestamp is the active inventory. Scripts should glob for `moxfield_haves_*.csv` and sort by date to find the current file.
+
+**MCP loading:** Read the `C:\MTG_Decks\inventory\` directory, identify the most recent `moxfield_haves_*.csv` by datestamp, and read that file directly. Do not ask the user to paste the CSV.
+
+**Manual loading:** User pastes the full CSV contents inline.
 
 ### Column Schema
 
@@ -67,20 +92,14 @@ For deckbuilding purposes, the AI should aggregate `Count` across all rows shari
 ---
 ## `_Current_Decklist`
 
-**Source:** `MTG_Decks/decks/[deck-name]/decklist.md`  
-**Populated from:** Moxfield deck export — "Copy for Moxfield" format (see below)  
-**Format:** Raw Moxfield export pasted into the file as-is — no stripping required  
+**Source:** `C:\MTG_Decks\decks\[deck-slug]\decklist.md`
+**Populated from:** Moxfield deck export — "Copy for Moxfield" format (see below)
+**Format:** Raw Moxfield export pasted into the file as-is — no stripping required
 **Used by:** Both `card-lookup.py` (oracle fetch) and the AI session (card name extraction)
 
-### File Location
+**MCP loading:** Read `C:\MTG_Decks\decks\[deck-slug]\decklist.md` directly.
 
-`decklist.md` lives in the deck's folder in `MTG_Decks/`:
-
-```
-MTG_Decks/decks/[deck-name]/decklist.md
-```
-
-This is a static filename — one file per deck, overwritten when the list changes. Moxfield remains the authoritative source; `decklist.md` is the local working copy.
+**Manual loading:** User pastes the file contents inline.
 
 ### How to Update
 
@@ -135,18 +154,26 @@ These fields are used by `card-lookup.py` for parsing only and have no bearing o
 ---
 ## `_Bracket_Target`
 
-**Source:** Deck's `deck-readme.md` — the `Bracket` field  
+**Source:** Deck's `overview.md` — the `Bracket` field
 **Format:** Single integer, 1 through 5
+
+**MCP loading:** Read `C:\MTG_Decks\decks\[deck-slug]\overview.md` and extract the `Bracket` field from the Identity section.
+
+**Manual loading:** User confirms bracket verbally or pastes the overview file.
 
 This value governs which rules from `bracket-constraints.md` apply for the entire session. The AI must confirm the bracket target at the start of every session before evaluating any upgrade candidate.
 
-If `deck-readme.md` is not provided, the AI must ask for the bracket target before proceeding. Defaulting to Bracket 3 without confirmation is not permitted.
+If the overview file is not available or does not contain a bracket value, the AI must ask for the bracket target before proceeding. Defaulting to Bracket 3 without confirmation is not permitted.
 
 ---
 ## `_Session_Changelog`
 
-**Source:** Deck's `changelog.md`  
-**Format:** Markdown (see `templates/changelog.md`)
+**Source:** Deck's `changelog.md`
+**Format:** Markdown (see `templates/changelog-template.md`)
+
+**MCP loading:** Read `C:\MTG_Decks\decks\[deck-slug]\changelog.md` directly. If the file exists but contains only the template stub (no session entries), treat it as equivalent to no changelog — note this and proceed without changelog constraints.
+
+**Manual loading:** User pastes the file contents inline.
 
 The session changelog carries forward decisions from prior sessions. The AI must read this before making any suggestions and must honor these rules:
 
@@ -159,10 +186,12 @@ If no changelog exists for a deck, note this at the start of the session and pro
 ---
 ## `_Card_Oracle`
 
-**Source:** Output of `scripts/card-lookup.py`  
-**Format:** Plain text block (`_Card_Oracle` block as printed by the script)  
-**Generated by:** `python card-lookup.py --decklist <moxfield-export>` before session start, or `--cards "Name" "Name"` for mid-session spot lookups  
+**Source:** Output of `scripts/card-lookup.py`
+**Format:** Plain text block (`_Card_Oracle` block as printed by the script)
+**Generated by:** `python card-lookup.py --decklist <path-to-decklist.md>` before session start, or `--cards "Name" "Name"` for mid-session spot lookups
 **Data source:** Scryfall API — no auth required
+
+> **MCP note:** `_Card_Oracle` is not a file read by the AI directly — it is generated by running `card-lookup.py` locally and pasting the output into the session. This applies in both MCP and manual modes. MCP access does not change this workflow.
 
 ### Purpose
 
@@ -198,8 +227,8 @@ Paste the output into the session as a supplemental `_Card_Oracle` block. The AI
 ---
 ## `_Web_Sources`
 
-**Source:** URLs or pasted text from guides (EDHREC, Command Zone, etc.)  
-**Format:** Plain text, pasted inline, or as URLs for the AI to fetch  
+**Source:** URLs or pasted text from guides (EDHREC, Command Zone, etc.)
+**Format:** Plain text, pasted inline, or as URLs for the AI to fetch
 **Handled by:** `prompts/web-guide-synthesis.md`
 
 Web sources are optional context. They are only relevant when running a web guide synthesis pass. If no web sources are provided, skip Phase 3 (Web Guide Synthesis) of the upgrade path defined in `master-deckbuilding-logic.md` and note this to the user.
@@ -207,14 +236,26 @@ Web sources are optional context. They are only relevant when running a web guid
 ---
 ## Session Loading Checklist
 
-Before beginning any deckbuilding session, confirm the following inputs are present:
+### MCP-Connected Session
 
-- [ ] `_Global_Inventory` — collection CSV loaded
-- [ ] `_Current_Decklist` — flat text decklist loaded
-- [ ] `_Bracket_Target` — confirmed from `deck-readme.md`
-- [ ] `_Session_Changelog` — loaded if it exists; absence noted if not
-- [ ] `_Card_Oracle` — generated by `card-lookup.py --decklist` if available; absence noted if not, manual Scryfall fallback applies
-- [ ] `protocols/master-deckbuilding-logic.md` — loaded
-- [ ] `protocols/bracket-constraints.md` — loaded
+The AI reads all available inputs directly from disk at session start. Confirm each was successfully read before proceeding.
 
-If any required input is missing, pause and request it before proceeding.
+- [ ] `_Global_Inventory` — read most recent `moxfield_haves_*.csv` from `C:\MTG_Decks\inventory\`
+- [ ] `_Current_Decklist` — read `C:\MTG_Decks\decks\[deck-slug]\decklist.md`
+- [ ] `_Bracket_Target` — extracted from `C:\MTG_Decks\decks\[deck-slug]\overview.md`
+- [ ] `_Session_Changelog` — read `C:\MTG_Decks\decks\[deck-slug]\changelog.md`; absence or stub noted if not present
+- [ ] `_Card_Oracle` — paste output of `card-lookup.py --decklist decklist.md` if available; absence noted if not, manual Scryfall fallback applies
+- [ ] `protocols/master-deckbuilding-logic.md` — read from `D:\repos\MTG_Management\protocols\`
+- [ ] `protocols/bracket-constraints.md` — read from `D:\repos\MTG_Management\protocols\`
+
+### Manual Session
+
+- [ ] `_Global_Inventory` — collection CSV pasted inline
+- [ ] `_Current_Decklist` — flat text decklist pasted inline
+- [ ] `_Bracket_Target` — confirmed from `[deck-slug]-overview.md` or stated verbally
+- [ ] `_Session_Changelog` — pasted inline if it exists; absence noted if not
+- [ ] `_Card_Oracle` — generated by `card-lookup.py --decklist` and pasted inline if available; absence noted if not, manual Scryfall fallback applies
+- [ ] `protocols/master-deckbuilding-logic.md` — pasted inline or confirmed loaded
+- [ ] `protocols/bracket-constraints.md` — pasted inline or confirmed loaded
+
+If any required input is missing in either mode, pause and request it before proceeding.

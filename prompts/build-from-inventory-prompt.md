@@ -39,9 +39,11 @@ spellslinger, stax, big mana, reanimator, counters, chaos, tribal (specify tribe
 [Commander / Oathbreaker / Other]
 
 ### Inventory
-<!-- Paste your card list, spreadsheet export, or describe your collection.
+<!-- MCP-connected sessions: the AI will read the most recent moxfield_haves_*.csv
+     from C:\MTG_Decks\inventory\ automatically — no paste needed.
+     Manual sessions: paste your Moxfield collection CSV export or a plain card list here.
      The more specific, the better. At minimum, list cards you know you want considered. -->
-[Your inventory here]
+[MCP: loaded automatically | Manual: paste inventory here]
 
 ### Additional Context
 <!-- Optional. Examples: 
@@ -91,7 +93,7 @@ Bracket 3
 Commander
 
 ### Inventory
-[inventory list]
+[MCP: loaded automatically]
 
 ### Additional Context
 I have a deep collection of black sacrifice payoffs. Light on green ramp.
@@ -119,7 +121,7 @@ Bracket 2
 Commander
 
 ### Inventory
-[inventory list]
+[MCP: loaded automatically]
 
 ### Additional Context
 I have Gravecrawler, Phyrexian Altar, and most of the classic zombie payoffs.
@@ -130,13 +132,14 @@ Open to mono-black or Dimir commanders.
 
 ## Loading Instructions
 
-Before beginning a session, load the following files in addition to this prompt:
+Before beginning a session, the following files must be loaded. In an MCP-connected session the AI reads these directly from disk. In a manual session, paste their contents inline.
 
-| File | Purpose |
-|------|---------|
-| `protocols/build-from-inventory-logic.md` | Core build rules and phase structure |
-| `protocols/bracket-constraints.md` | Legality guardrails by bracket |
-| `protocols/master-deckbuilding-logic.md` | Shared foundational principles |
-| `protocols/input-contract.md` | Input validation rules |
+| File | Path | Purpose |
+|------|------|---------|
+| `build-from-inventory-logic.md` | `protocols/` | Core build rules and phase structure |
+| `bracket-constraints.md` | `protocols/` | Legality guardrails by bracket |
+| `master-deckbuilding-logic.md` | `protocols/` | Shared foundational principles |
+| `input-contract.md` | `protocols/` | Input validation rules |
+| `_Global_Inventory` | `C:\MTG_Decks\inventory\moxfield_haves_*.csv` | MCP: read automatically. Manual: paste inline. |
 
-Provide your inventory in the format your collection tool exports, or paste a plain list. The AI will work with whatever format is provided.
+See `input-contract.md` for full session loading checklist and MCP vs manual mode details.
